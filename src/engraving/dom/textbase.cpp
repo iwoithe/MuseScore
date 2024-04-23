@@ -3234,7 +3234,7 @@ void TextBase::drawEditMode(Painter* p, EditData& ed, double currentViewScaling)
     }
 
     p->translate(-pos);
-    p->setPen(Pen(engravingConfiguration()->formattingMarksColor(), 2.0 / currentViewScaling)); // 2 pixel pen size
+    p->setPen(Pen(engravingConfiguration()->formattingColor(), 2.0 / currentViewScaling)); // 2 pixel pen size
     p->setBrush(BrushStyle::NoBrush);
 
     double m = spatium();

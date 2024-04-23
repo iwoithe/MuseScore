@@ -1967,7 +1967,7 @@ void EngravingItem::drawEditMode(Painter* p, EditData& ed, double /*currentViewS
     p->setPen(pen);
     for (int i = 0; i < ed.grips; ++i) {
         if (Grip(i) == ed.curGrip) {
-            p->setBrush(engravingConfiguration()->formattingMarksColor());
+            p->setBrush(engravingConfiguration()->formattingColor());
         } else {
             p->setBrush(BrushStyle::NoBrush);
         }

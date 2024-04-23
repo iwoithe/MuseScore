@@ -825,7 +825,7 @@ void TDraw::draw(const BarLine* item, Painter* painter)
     if (s && s->isEndBarLineType() && !item->score()->printing()) {
         Measure* m = s->measure();
         if (m->isIrregular() && item->score()->markIrregularMeasures() && !m->isMMRest()) {
-            painter->setPen(EngravingItem::engravingConfiguration()->formattingMarksColor());
+            painter->setPen(EngravingItem::engravingConfiguration()->formattingColor());
             Font f(u"Edwin", Font::Type::Text);
             f.setPointSizeF(12 * item->spatium() / SPATIUM20);
             f.setBold(true);
@@ -990,7 +990,7 @@ void TDraw::draw(const Box* item, Painter* painter)
         pen.setCapStyle(PenCapStyle::SquareCap);
         pen.setColor(showHighlightedFrame
                      ? Box::engravingConfiguration()->selectionColor()
-                     : Box::engravingConfiguration()->formattingMarksColor());
+                     : Box::engravingConfiguration()->formattingColor());
         pen.setDashPattern({ 1, 3 });
 
         painter->setBrush(BrushStyle::NoBrush);
@@ -1172,7 +1172,7 @@ void TDraw::draw(const FiguredBass* item, Painter* painter)
     if (!item->score()->printing() && item->score()->showUnprintable()) {
         for (double len : ldata->lineLengths) {
             if (len > 0) {
-                painter->setPen(Pen(FiguredBass::engravingConfiguration()->formattingMarksColor(), 3));
+                painter->setPen(Pen(FiguredBass::engravingConfiguration()->formattingColor(), 3));
                 painter->drawLine(0.0, -2, len, -2);              // -2: 2 rast. un. above digits
             }
         }
@@ -2018,7 +2018,7 @@ void TDraw::draw(const LayoutBreak* item, Painter* painter)
         return;
     }
 
-    Pen pen(item->selected() ? item->engravingConfiguration()->selectionColor() : item->engravingConfiguration()->formattingMarksColor());
+    Pen pen(item->selected() ? item->engravingConfiguration()->selectionColor() : item->engravingConfiguration()->formattingColor());
     if (item->score()->isPaletteScore()) {
         pen.setColor(item->engravingConfiguration()->fontPrimaryColor());
     }
@@ -2600,7 +2600,7 @@ void TDraw::draw(const Spacer* item, Painter* painter)
 
     auto conf = item->engravingConfiguration();
 
-    Pen pen(item->selected() ? conf->selectionColor() : conf->formattingMarksColor(), item->spatium()* 0.3);
+    Pen pen(item->selected() ? conf->selectionColor() : conf->formattingColor(), item->spatium()* 0.3);
 
     painter->setPen(pen);
     painter->setBrush(BrushStyle::NoBrush);
@@ -2624,7 +2624,7 @@ void TDraw::draw(const StaffState* item, Painter* painter)
     const StaffState::LayoutData* ldata = item->ldata();
     auto conf = item->engravingConfiguration();
 
-    Pen pen(item->selected() ? conf->selectionColor() : conf->formattingMarksColor(),
+    Pen pen(item->selected() ? conf->selectionColor() : conf->formattingColor(),
             ldata->lw, PenStyle::SolidLine, PenCapStyle::RoundCap, PenJoinStyle::RoundJoin);
     painter->setPen(pen);
     painter->setBrush(BrushStyle::NoBrush);
@@ -2657,7 +2657,7 @@ void TDraw::draw(const StaffTypeChange* item, Painter* painter)
     double w  = _spatium * 2.5;
     double lineDist = 0.35;           // line distance for the icon 'staff lines'
     // draw icon rectangle
-    painter->setPen(Pen(item->selected() ? conf->selectionColor() : conf->formattingMarksColor(),
+    painter->setPen(Pen(item->selected() ? conf->selectionColor() : conf->formattingColor(),
                         item->lw(), PenStyle::SolidLine, PenCapStyle::SquareCap, PenJoinStyle::MiterJoin));
     painter->setBrush(BrushStyle::NoBrush);
     painter->drawRect(0, 0, w, h);
@@ -2676,7 +2676,7 @@ void TDraw::draw(const StaffTypeChange* item, Painter* painter)
     }
     // calculate starting point Y for the lines from half the icon height (2.5) so staff lines appear vertically centered
     double startY = 1.25 - (lines - 1) * lineDist * 0.5;
-    painter->setPen(Pen(item->selected() ? conf->selectionColor() : conf->formattingMarksColor(),
+    painter->setPen(Pen(item->selected() ? conf->selectionColor() : conf->formattingColor(),
                         2.5, PenStyle::SolidLine, PenCapStyle::SquareCap, PenJoinStyle::MiterJoin));
     for (int i=0; i < lines; i++) {
         int y = (startY + i * lineDist) * _spatium;

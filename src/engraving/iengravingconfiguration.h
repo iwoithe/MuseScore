@@ -60,7 +60,6 @@ public:
     virtual Color warningSelectedColor() const = 0;
     virtual Color criticalColor() const = 0;
     virtual Color criticalSelectedColor() const = 0;
-    virtual Color formattingMarksColor() const = 0;
     virtual Color thumbnailBackgroundColor() const = 0;
     virtual Color noteBackgroundColor() const = 0;
     virtual Color fontPrimaryColor() const = 0;
@@ -77,6 +76,15 @@ public:
     virtual bool scoreInversionEnabled() const = 0;
     virtual void setScoreInversionEnabled(bool value) = 0;
     virtual muse::async::Notification scoreInversionChanged() const = 0;
+
+    virtual Color allVoicesColor() const = 0;
+    virtual muse::async::Channel<Color> allVoicesColorChanged() const = 0;
+
+    virtual Color formattingColor() const = 0;
+    virtual muse::async::Channel<Color> formattingColorChanged() const = 0;
+
+    virtual Color unlinkedColor() const = 0;
+    virtual muse::async::Channel<Color> unlinkedColorChanged() const = 0;
 
     virtual Color highlightSelectionColor(voice_idx_t voiceIndex = 0) const = 0;
 
